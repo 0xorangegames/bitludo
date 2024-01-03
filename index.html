@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9JEWNHYF56"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9JEWNHYF56');
+</script>
+    <link rel="icon" type="image/png" href="favicon.png"/>
+    <title>BitLudo by Orange Games</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: orange;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .square {
+            position: absolute;
+            background-color: darkorange;
+        }
+
+.square1 { width: 100px; height: 100px; top: 20%; left: 30%; }
+.square2 { width: 150px; height: 150px; top: 50%; left: 60%; }
+.square3 { width: 200px; height: 200px; top: 70%; left: 10%; }
+.square4 { width: 80px; height: 80px; top: 5%; left: 70%; }
+.square5 { width: 120px; height: 120px; top: 30%; left: 10%; }
+.square6 { width: 50px; height: 50px; top: 50%; left: 80%; }
+.square7 { width: 220px; height: 220px; top: 40%; left: 30%; }
+.square8 { width: 90px; height: 90px; top: 10%; left: 20%; }
+.square9 { width: 110px; height: 110px; top: 60%; left: 90%; }
+.square10 { width: 70px; height: 70px; top: 15%; left: 40%; }
+.square11 { width: 130px; height: 130px; top: 85%; left: 50%; }
+.square12 { width: 60px; height: 60px; top: 25%; left: 75%; }
+.square13 { width: 140px; height: 140px; top: 55%; left: 5%; }
+.square14 { width: 95px; height: 95px; top: 35%; left: 65%; }
+.square15 { width: 65px; height: 65px; top: 10%; left: 15%; }
+.square16 { width: 85px; height: 85px; top: 20%; left: 25%; }
+.square17 { width: 75px; height: 75px; top: 30%; left: 35%; }
+.square18 { width: 95px; height: 95px; top: 40%; left: 45%; }
+.square19 { width: 55px; height: 55px; top: 50%; left: 55%; }
+.square20 { width: 45px; height: 45px; top: 60%; left: 65%; }
+.square21 { width: 35px; height: 35px; top: 70%; left: 75%; }
+.square22 { width: 25px; height: 25px; top: 80%; left: 85%; }
+.square23 { width: 15px; height: 15px; top: 90%; left: 95%; }
+.square24 { width: 50px; height: 50px; top: 10%; left: 85%; }
+
+
+        .game-container {
+            width: 600px;
+            height: 600px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #board { 
+            display: grid; 
+            grid-template-columns: repeat(5, 50px); 
+            grid-template-rows: repeat(5, 50px); 
+            justify-content: center; 
+            margin-top: 20px; 
+        }
+
+        .cell { 
+            border: 1px solid white; 
+            width: 50px; 
+            height: 50px; 
+        }
+
+        .cell.home { background-color: orange; }
+        .danger { background-color: red; }
+        .tokenX { color: red; }
+        .tokenO { color: white; }
+        
+        #dice { padding: 10px; margin-top: 20px; cursor: pointer; }
+        #sb { margin-top: 20px; }
+        .diceResult { font-size: 20px; margin-top: 10px; }
+
+        .punk, .ape {
+            color: white;
+        }
+        .punk { color: red; }
+
+        .external-link a {
+            color: orange;
+            text-decoration: none;
+        }
+
+        .external-link a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="square square1"></div>
+    <div class="square square2"></div>
+    <div class="square square3"></div>
+    <div class="square square4"></div>
+    <div class="square square5"></div>
+    <div class="square square6"></div>
+    <div class="square square7"></div>
+    <div class="square square8"></div>
+    <div class="square square9"></div>
+    <div class="square square10"></div>
+    <div class="square square11"></div>
+    <div class="square square12"></div>
+    <div class="square square13"></div>
+    <div class="square square14"></div>
+    <div class="square square15"></div>
+    <div class="square square16"></div>
+    <div class="square square17"></div>
+    <div class="square square18"></div>
+    <div class="square square19"></div>
+    <div class="square square20"></div>
+    <div class="square square21"></div>
+    <div class="square square22"></div>
+    <div class="square square23"></div>
+    <div class="square square24"></div>
+
+    <div class="game-container">
+        <h2>BitLudo</h2>
+        <div id="board"></div>
+        <button id="dice" onclick="rollDice()">Roll Dice</button>
+        <p id="diceResult" class="diceResult"></p>
+        <p id="st"></p>
+        <div id="sb">
+            <span class="punk">Punk X: <span id="sX">0</span></span>
+            <span class="ape">Ape O: <span id="sO">0</span></span>
+        </div>
+        <p class="external-link"><a href="https://magiceden.io/ordinals/item-details/9a165849ac3e1f4c357c7d98f82c0818a170b6c5618296d0582f9594c473e4a1i0" target="_blank"><b>This game is inscribed on a rare sat mined by Satoshi Nakamoto in 2009. Collect it!</b></a></p>
+    </div>
+
+    <script>
+        var boardSize = 5, endPos = 24;
+        var players = { X: 0, O: 0 };
+        var dangerSquares = [6, 13, 20];
+        var currentPlayer = 'X';
+        var s = { X: 0, O: 0 };
+        var diceButton = document.getElementById('dice');
+        var statusText = document.getElementById('st');
+        var moveInterval;
+
+        window.onload = function() {
+            createBoard();
+        };
+
+        function createBoard() {
+            const board = document.getElementById('board');
+            board.innerHTML = ''; // Clear any existing cells
+            for (let i = 0; i < boardSize * boardSize; i++) {
+                let cell = document.createElement('div');
+                cell.className = 'cell' + (i === endPos ? ' home' : '') + (dangerSquares.includes(i) ? ' danger' : '');
+                board.appendChild(cell);
+            }
+            updateBoard();
+        }
+
+        function rollDice() {
+            diceButton.disabled = true;
+            statusText.innerText = '';
+            const diceResult = Math.floor(Math.random() * 6) + 1;
+            document.getElementById('diceResult').innerText = 'Rolled: ' + diceResult;
+            document.getElementById('diceResult').style.color = currentPlayer === 'X' ? 'red' : 'white';
+            animateMove(currentPlayer, diceResult);
+        }
+
+        function animateMove(player, steps) {
+            var currentPos = players[player];
+            var finalPos = currentPos + steps;
+            if (finalPos > endPos) {
+                statusText.innerText = 'Roll was too high!';
+                switchTurn();
+                return;
+            }
+
+            moveInterval = setInterval(function() {
+                if (currentPos < finalPos) {
+                    currentPos++;
+                    updatePlayerPosition(player, currentPos);
+                } else {
+                    clearInterval(moveInterval);
+                    checkSquare(player, finalPos);
+                }
+            }, 500);
+        }
+
+        function updatePlayerPosition(player, newPos) {
+            players[player] = newPos;
+            updateBoard();
+        }
+
+        function checkSquare(player, newPos) {
+            var opponent = player === 'X' ? 'O' : 'X';
+            if (players[opponent] === newPos) {
+                players[opponent] = 0;
+                updateBoard();
+            }
+
+            if (dangerSquares.includes(newPos)) {
+                players[player] = 0;
+                statusText.innerText = 'Oh no! Hit a danger square!';
+                updateBoard();
+            } else if (newPos === endPos) {
+                statusText.innerText = (player === 'X' ? 'Punk X' : 'Ape O') + ' Wins!';
+                updateScore(player);
+                resetGame();
+                return;
+            }
+
+            switchTurn();
+        }
+
+        function switchTurn() {
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            diceButton.disabled = false;
+        }
+
+        function updateBoard() {
+            document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = '');
+            Object.keys(players).forEach(player => {
+                const tokenCell = document.querySelectorAll('.cell')[players[player]];
+                tokenCell.innerHTML = '<span class="token' + player + '">' + player + '</span>';
+            });
+        }
+
+        function resetGame() {
+            players = { X: 0, O: 0 };
+            currentPlayer = 'X';
+            updateBoard();
+        }
+
+        function updateScore(player) {
+            s[player]++;
+            document.getElementById('s' + player).innerText = s[player];
+        }
+    </script>
+</body>
+</html>
